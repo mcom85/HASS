@@ -1,0 +1,33 @@
+#Transmission Status
+- platform: transmission
+  host: 192.168.1.188
+  port: !secret transport
+  monitored_variables:
+    - 'current_status'
+    - 'download_speed'
+    - 'upload_speed'
+    - 'active_torrents'
+    
+#Plex User Count   
+- platform: plex
+  host: 192.168.1.188
+  port: !secret plexport
+  username: !secret plex_username
+  password: !secret plex_password
+  
+
+#Washing Machine
+- platform: template
+  sensors:
+    washing_machine_amps:
+      value_template: '{{ states.switch.washing_machine.attributes["current_a"] | replace(" A", "") | float }}'
+      unit_of_measurement: 'A'
+    washing_machine_watts:
+      value_template: '{{ states.switch.washing_machine.attributes["current_power_w"] | replace(" W", "") | float }}'
+      unit_of_measurement: 'W'
+    washing_machine_kw:
+      value_template: '{{ states.switch.washing_machine.attributes["total_energy_kwh"] | replace(" kW", "") | float }}'
+      unit_of_measurement: 'kW'
+    washing_machine_volts:
+      value_template: '{{ states.switch.washing_machine.attributes["voltage"] | replace(" V", "") | float }}'
+      unit_of_measurement: 'V'   

@@ -1,0 +1,9 @@
+- platform: icloud
+  username: !secret icloud_userM
+  password: !secret icloud_passM
+  account_name: Matt
+  
+- platform: icloud
+  username: !secret icloud_userB
+  password: !secret icloud_passB
+  account_name: Brandy

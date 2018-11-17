@@ -1,0 +1,55 @@
+light.br1:
+  hidden: true
+  homebridge_hidden: true
+light.br2:
+  hidden: true
+  homebridge_hidden: true
+light.br3:
+  hidden: true
+  homebridge_hidden: true
+light.lr1:
+  hidden: true
+  homebridge_hidden: true
+light.lr2:
+  hidden: true
+  homebridge_hidden: true
+light.lr3:
+  hidden: true
+  homebridge_hidden: true
+light.o1:
+  hidden: true
+  homebridge_hidden: true
+light.o2:
+  hidden: true
+  homebridge_hidden: true
+light.o3:
+  hidden: true
+  homebridge_hidden: true
+light.sr1:
+  hidden: true
+  homebridge_hidden: true
+light.sr2:
+  hidden: true
+  homebridge_hidden: true
+light.sr3:
+  hidden: true
+  homebridge_hidden: true
+light.HW1:
+  hidden: true
+  homebridge_hidden: true
+light.HW2:
+  hidden: true
+  homebridge_hidden: true
+light.FE2:
+  hidden: true
+  homebridge_hidden: true
+light.FE1:
+  hidden: true
+  homebridge_hidden: true
+light.DR1:
+  hidden: true
+  homebridge_hidden: true
+light.DR2:
+  hidden: true
+  homebridge_hidden: true
+group.all_lights: {}

@@ -1,0 +1,153 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/Chicago
+  # Customization file
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+#  extra_html_url:
+#    - /local/custom_ui/state-card-custom-ui.html
+#  extra_html_url_es5:
+#    - /local/custom_ui/state-card-custom-ui-es5.html
+# Enables configuration UI
+config:
+
+
+http:
+# Secrets are defined in the file secrets.yaml
+#  api_password: !secret api_password
+#  ssl_certificate: !secret sslc
+#  ssl_key: !secret sslk 
+#  base_url: !secret baseu
+
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+sensor: !include sensor.yaml
+
+# Text to speech
+tts:
+  - platform: google
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+
+# Cloud
+cloud:
+  google_actions:
+    filter: 
+      exclude_domains:
+        -  group
+        -  sensor
+      exclude_entities:
+        - light.O1
+        - light.O2
+        - light.O3
+        - light.LR1
+        - light.LR2
+        - light.LR3
+        - light.BR1
+        - light.BR2
+        - light.BR3
+        - light.SR1
+        - light.SR2
+        - light.SR3
+        - light.DR1
+        - light.DR2
+        - light.FE2
+        - light.FE1
+        - light.HW2
+        - light.HW1
+        - light.kitchen_right
+        - light.kitchen_left
+
+ecobee:
+   api_key: !secret ecobee_api_key
+
+#Pushbullet Notification Service
+notify:
+  - name: Pushbullet
+    platform: pushbullet
+    api_key: !secret pushbullet_api
+  - name: washing_machine
+    platform: pushbullet
+    api_key: !secret pushbullet_api  
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+device_tracker: !include tracker.yaml
+
+
+panel_iframe:
+  mdiindex:
+    title: MDI Icon Index
+    icon: mdi:vector-square
+    url: https://cdn.rawgit.com/james-fry/home-assistant-mdi/efd95d7a/home-assistant-mdi.html
+
+media_player:
+#Spotify
+  - platform: spotify
+    client_id: !secret spotify_id
+    client_secret: !secret spotify_secret
+
+#Zwave Controller/HusBZB Setup
+zwave:
+  usb_path: /dev/serial/by-id/usb-Silicon_Labs_HubZ_Smart_Home_Controller_90F00017-if00-port0
+
+#Zigbee USB Controller - not working right now  
+zha: 
+  usb_path: /dev/ttyUSB1
+  database_path: /home/homeassistant/.homeassistant/zigbee.db
+ 
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api
+    units: us
+  
+input_boolean:
+  matthome:
+    name: matt_home
+    initial: on
+    icon: mdi:cellphone-iphone
+  brandyhome:
+    name: brandy_home
+    initial: on
+    icon: mdi:cellphone-iphone
+  bothhome:
+    name: both_home
+    initial: on
+    icon: mdi:cellphone-iphone
+
+switch: 
+  - platform: tplink
+    host: 192.168.1.142
+    name: Washing_Machine
+ios:
